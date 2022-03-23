@@ -14,7 +14,7 @@ namespace FirstConsoleApp
             List<Supplier> supplierlist = supplier.suppliers;
             foreach (var member in supplierlist)
             {
-                Console.WriteLine($"Supplier's ID: {member.SupplierID}\t\t\tSupplier's name: {member.Name}\t\t\tSupplier's adress: {member.Adress}\t\t\tSupplier's OIB: {member.Oib}\t\t\tSupplier's IBAN: ddd");
+                Console.WriteLine($"Supplier's ID: {member.SupplierID}\t\t\tSupplier's name: {member.Name}\t\t\tSupplier's adress: {member.Adress}\t\t\tSupplier's IBAN: ddd{member.Iban}");
                 Console.ReadLine();
             }
         }

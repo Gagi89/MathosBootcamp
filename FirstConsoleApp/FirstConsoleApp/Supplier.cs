@@ -23,8 +23,6 @@ namespace FirstConsoleApp
                 supplier.Name = Console.ReadLine();
                 Console.WriteLine("Enter the adress of the supplier: ");
                 supplier.Adress = Console.ReadLine();
-                Console.WriteLine("Enter OIB of the supplier: ");
-                supplier.Oib = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Enter IBAN of the supplier: ");
                 supplier.Iban = Console.ReadLine();
                 suppliers.Add(supplier);
