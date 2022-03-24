@@ -1,0 +1,128 @@
+USE WebApplication_DataBase
+
+CREATE TABLE Supplier
+(
+	ID UNIQUEIDENTIFIER DEFAULT NEWID() PRIMARY KEY,
+	SupplierName varchar(50),
+	SupplierAdress varchar(100),
+	SupplierIBAN varchar(50)
+);
+
+CREATE TABLE Merchandise
+(
+	ID int IDENTITY(1,1) PRIMARY KEY,
+	Quantity int NOT NULL,
+	Price int NOT NULL,
+	SupplierID UNIQUEIDENTIFIER,
+	FOREIGN KEY (SupplierID) REFERENCES Supplier(ID)
+);
+
+CREATE TABLE Buyer
+(
+	ID UNIQUEIDENTIFIER DEFAULT NEWID() PRIMARY KEY,
+	BuyerName varchar(50),
+	BuyerAdress varchar(100),
+	BuyerOIB int
+);
+
+CREATE TABLE Cashier
+(
+	ID int IDENTITY(1,1) PRIMARY KEY,
+	CashierName varchar(MAX),
+	BuyerID UNIQUEIDENTIFIER,
+	FOREIGN KEY (BuyerID) REFERENCES Buyer(ID)
+);
+
+CREATE TABLE MerchandiseCashier
+(
+	ID int IDENTITY(1,1) PRIMARY KEY,
+	MerchandiseID int NOT NULL,
+	CashierID int NOT NULL,
+	FOREIGN KEY (MerchandiseID) REFERENCES Merchandise(ID),
+	FOREIGN KEY (CashierID) REFERENCES Cashier(ID)
+);
+
+========================================================================
+
+INSERT INTO Supplier (SupplierName, SupplierAdress, SupplierIBAN)
+VALUES 
+('Bjelic Co d.o.o.', 'Sv. Leopolda Bogdana Mandića 13a, Osijek', 'HR5525000091101017261'),
+('Roto dinamic d.o.o.', 'Ulica grada Wirgesa 14, Samobor', 'HR7924020061100295117'),
+('Atlantic Grupa d.d.', 'Miramarska 23, Zagreb', 'HR9223600001101842569'),
+('Orbico d.o.o.', 'Koturaška cesta 69, Zagreb', 'HR3023600001502908130');
+
+select * from Supplier
+
+INSERT INTO Buyer (BuyerName, BuyerAdress, BuyerOIB)
+VALUES
+('Danko Niksic', 'Marjanska ulica 18b, Osijek', 12345678912),
+('Dino Niksic', 'Marjanska ulica 18b, OSije', 98765432198),
+('Dragan Bogdanovic', 'Trg Bana Josipa Jelacica 29, Osijek', 15935745612),
+('Bojan Bogdanovic', 'Osjecka 90, Darda', 95175365498);
+
+Error:
+Msg 8115, Level 16, State 2, Line 1
+Arithmetic overflow error converting expression to data type int.
+The statement has been terminated.
+
+ALTER TABLE Buyer ALTER COLUMN BuyerOIB bigint
+
+INSERT INTO Buyer (BuyerName, BuyerAdress, BuyerOIB)
+VALUES
+('Danko Niksic', 'Marjanska ulica 18b, Osijek', 12345678912),
+('Dino Niksic', 'Marjanska ulica 18b, OSije', 98765432198),
+('Dragan Bogdanovic', 'Trg Bana Josipa Jelacica 29, Osijek', 15935745612),
+('Bojan Bogdanovic', 'Osjecka 90, Darda', 95175365498);
+
+select * from Buyer
+
+UPDATE Buyer
+SET BuyerAdress = 'Marjanska ulica 18b, Osijek'
+WHERE ID = 05D9749E-8472-461F-8E01-F584C05C517E;
+
+Error:
+Msg 102, Level 15, State 1, Line 21
+Incorrect syntax near 'D9749E'.
+
+UPDATE Buyer
+SET BuyerAdress = 'Marjanska ulica 18b, Osijek'
+WHERE ID = '05D9749E-8472-461F-8E01-F584C05C517E';
+
+INSERT INTO Cashier (CashierName)
+VALUES
+('Receipt 1'),
+('Receipt 2'),
+('Receipt 3'),
+('Receipt 4');
+
+select * from Cashier
+
+ALTER TABLE Merchandise
+ADD MerchandiseName varchar(50);
+
+select * from Merchandise
+
+INSERT INTO Merchandise (MerchandiseName, Quantity, Price)
+VALUES
+('KRUH tip-550 600g', 220, 6.80),
+('KRUH tip-850 600g', 80, 7.50),
+('PERECA 80g', 120, 2.20),
+('JOGURT 2.8% m.m. 180g', 60, 3.80);
+
+select * from Merchandise
+
+ALTER TABLE Merchandise ALTER COLUMN Price float;
+
+select * from Merchandise
+
+UPDATE Merchandise SET Price = 6.80 WHERE ID = 1
+UPDATE Merchandise SET Price = 7.50 WHERE ID = 2
+UPDATE Merchandise SET Price = 2.20 WHERE ID = 3
+UPDATE Merchandise SET Price = 3.80 WHERE ID = 4
+
+select * from Merchandise
+
+ALTER TABLE Merchandise ALTER COLUMN Price MONEY;
+
+select * from Merchandise
+
