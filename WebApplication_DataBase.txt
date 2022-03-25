@@ -169,13 +169,3 @@ INSERT INTO MerchandiseCashier (MerchandiseID, CashierID) VALUES
 
 select * from MerchandiseCashier
 
-select * from Buyer
-
-UPDATE Buyer
-SET BuyerAdress = 0
-WHERE ID = 'DD105C78-D1E9-4191-9CB9-04CE3F7BF3B6';
-
-UPDATE Buyer
-SET BuyerOIB = 0
-WHERE ID = 'DD105C78-D1E9-4191-9CB9-04CE3F7BF3B6';
-
