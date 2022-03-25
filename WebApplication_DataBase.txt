@@ -97,8 +97,7 @@ VALUES
 
 select * from Cashier
 
-ALTER TABLE Merchandise
-ADD MerchandiseName varchar(50);
+ALTER TABLE Merchandise ADD MerchandiseName varchar(50);
 
 select * from Merchandise
 
@@ -169,4 +168,14 @@ INSERT INTO MerchandiseCashier (MerchandiseID, CashierID) VALUES
 (1, 2), (2, 1), (3, 3), (4, 4);
 
 select * from MerchandiseCashier
+
+select * from Buyer
+
+UPDATE Buyer
+SET BuyerAdress = 0
+WHERE ID = 'DD105C78-D1E9-4191-9CB9-04CE3F7BF3B6';
+
+UPDATE Buyer
+SET BuyerOIB = 0
+WHERE ID = 'DD105C78-D1E9-4191-9CB9-04CE3F7BF3B6';
 
