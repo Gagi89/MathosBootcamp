@@ -1,0 +1,11 @@
+C:\Users\Korisnik\source\repos\WebApplication\TestWebApiService\obj\Debug\TestWebApiService.csproj.AssemblyReference.cache
+C:\Users\Korisnik\source\repos\WebApplication\TestWebApiService\obj\Debug\TestWebApiService.csproj.CoreCompileInputs.cache
+C:\Users\Korisnik\source\repos\WebApplication\TestWebApiService\bin\Debug\TestWebApiService.dll
+C:\Users\Korisnik\source\repos\WebApplication\TestWebApiService\bin\Debug\TestWebApiService.pdb
+C:\Users\Korisnik\source\repos\WebApplication\TestWebApiService\bin\Debug\TestWebApiModel.dll
+C:\Users\Korisnik\source\repos\WebApplication\TestWebApiService\bin\Debug\TestWebApiRepository.dll
+C:\Users\Korisnik\source\repos\WebApplication\TestWebApiService\bin\Debug\TestWebApiModel.pdb
+C:\Users\Korisnik\source\repos\WebApplication\TestWebApiService\bin\Debug\TestWebApiRepository.pdb
+C:\Users\Korisnik\source\repos\WebApplication\TestWebApiService\obj\Debug\TestWebApiService.csproj.CopyComplete
+C:\Users\Korisnik\source\repos\WebApplication\TestWebApiService\obj\Debug\TestWebApiService.dll
+C:\Users\Korisnik\source\repos\WebApplication\TestWebApiService\obj\Debug\TestWebApiService.pdb

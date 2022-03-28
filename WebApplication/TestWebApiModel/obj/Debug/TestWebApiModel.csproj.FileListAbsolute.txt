@@ -1,0 +1,6 @@
+C:\Users\Korisnik\source\repos\WebApplication\TestWebApiModel\bin\Debug\TestWebApiModel.dll
+C:\Users\Korisnik\source\repos\WebApplication\TestWebApiModel\bin\Debug\TestWebApiModel.pdb
+C:\Users\Korisnik\source\repos\WebApplication\TestWebApiModel\obj\Debug\TestWebApiModel.csproj.AssemblyReference.cache
+C:\Users\Korisnik\source\repos\WebApplication\TestWebApiModel\obj\Debug\TestWebApiModel.csproj.CoreCompileInputs.cache
+C:\Users\Korisnik\source\repos\WebApplication\TestWebApiModel\obj\Debug\TestWebApiModel.dll
+C:\Users\Korisnik\source\repos\WebApplication\TestWebApiModel\obj\Debug\TestWebApiModel.pdb
