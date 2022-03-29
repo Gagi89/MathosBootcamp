@@ -9,3 +9,7 @@ C:\Users\Korisnik\source\repos\WebApplication\TestWebApiService\bin\Debug\TestWe
 C:\Users\Korisnik\source\repos\WebApplication\TestWebApiService\obj\Debug\TestWebApiService.csproj.CopyComplete
 C:\Users\Korisnik\source\repos\WebApplication\TestWebApiService\obj\Debug\TestWebApiService.dll
 C:\Users\Korisnik\source\repos\WebApplication\TestWebApiService\obj\Debug\TestWebApiService.pdb
+C:\Users\Korisnik\source\repos\WebApplication\TestWebApiService\bin\Debug\TestWebApiServiceCommon.dll
+C:\Users\Korisnik\source\repos\WebApplication\TestWebApiService\bin\Debug\TestWebApiRepositoryCommon.dll
+C:\Users\Korisnik\source\repos\WebApplication\TestWebApiService\bin\Debug\TestWebApiServiceCommon.pdb
+C:\Users\Korisnik\source\repos\WebApplication\TestWebApiService\bin\Debug\TestWebApiRepositoryCommon.pdb

@@ -91,3 +91,7 @@ C:\Users\Korisnik\source\repos\WebApplication\TestWebAPI(list)\bin\TestWebApiRep
 C:\Users\Korisnik\source\repos\WebApplication\TestWebAPI(list)\bin\TestWebApiService.pdb
 C:\Users\Korisnik\source\repos\WebApplication\TestWebAPI(list)\bin\TestWebApiCommon.dll
 C:\Users\Korisnik\source\repos\WebApplication\TestWebAPI(list)\bin\TestWebApiCommon.pdb
+C:\Users\Korisnik\source\repos\WebApplication\TestWebAPI(list)\bin\TestWebApiRepositoryCommon.dll
+C:\Users\Korisnik\source\repos\WebApplication\TestWebAPI(list)\bin\TestWebApiServiceCommon.dll
+C:\Users\Korisnik\source\repos\WebApplication\TestWebAPI(list)\bin\TestWebApiRepositoryCommon.pdb
+C:\Users\Korisnik\source\repos\WebApplication\TestWebAPI(list)\bin\TestWebApiServiceCommon.pdb

@@ -57,8 +57,7 @@ namespace TestWebAPI_list_.Controllers
                     buyerRest.Oib = item.Oib;
                     buyerRests.Add(buyerRest);
                 }
-                if (buyerRests != null)
-                    return Request.CreateResponse(HttpStatusCode.OK, buyerRests);
+                return Request.CreateResponse(HttpStatusCode.OK, buyerRests);
             }
             else
                 return Request.CreateResponse(HttpStatusCode.NotFound, "Buyer index does not exist.");
@@ -93,7 +92,6 @@ namespace TestWebAPI_list_.Controllers
                 List<BuyerModel> listofbuyers = new List<BuyerModel>();
                 foreach (var item in buyer)
                 {
-
                     BuyerModel buyerModel = new BuyerModel();
                     buyerModel.Name = item.Name;
                     buyerModel.Adress = item.Adress;
