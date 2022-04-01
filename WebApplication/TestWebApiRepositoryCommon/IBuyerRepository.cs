@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestWebApiCommon;
 using TestWebApiModel;
 
 namespace TestWebApiRepositoryCommon
 {
     public interface IBuyerRepository
     {
-        Task <List<BuyerModel>> GetBuyerAsync();
+        Task <List<BuyerModel>> GetBuyerAsync(Page page, Sort sort, Filter filter);
         Task <List<BuyerModel>> GetBuyerByIdAsync(Guid id);
         Task PostBuyerAsync(BuyerModel buyer);
         Task PostBuyersAsync(List<BuyerModel> buyer);

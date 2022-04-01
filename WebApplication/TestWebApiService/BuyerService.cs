@@ -9,46 +9,47 @@ using System.Data.SqlClient;
 using TestWebApiRepository;
 using TestWebApiModel;
 using TestWebApiServiceCommon;
+using TestWebApiRepositoryCommon;
+using TestWebApiCommon;
 
 namespace TestWebApiService
 {
-    public class BuyerService : IServiceRepository
+    public class BuyerService : IBuyerService
     {
-        public async Task <List<BuyerModel>> GetBuyerAsync()
+        private IBuyerRepository buyerRepository;
+        public  BuyerService(IBuyerRepository buyerRepository)
         {
-            BuyerRepository buyerRepository = new BuyerRepository();
-            return await buyerRepository.GetBuyerAsync();
+            this.buyerRepository = buyerRepository;
+        }
+
+        public async Task <List<BuyerModel>> GetBuyerAsync(Page page, Sort sort, Filter filter)
+        {
+            return await buyerRepository.GetBuyerAsync(page, sort, filter);
         }
 
         public async Task <List<BuyerModel>> GetBuyerByIdAsync(Guid id)
         {
-            BuyerRepository buyerRepository = new BuyerRepository();
             return await buyerRepository.GetBuyerByIdAsync(id);
         }
         public async Task PostBuyerAsync(BuyerModel buyer)
         {
-            BuyerRepository buyerRepository = new BuyerRepository();
             await buyerRepository.PostBuyerAsync(buyer);
         }
         public async Task PostBuyersAsync(List<BuyerModel> buyer)
         {
-            BuyerRepository buyerRepository = new BuyerRepository();
             await buyerRepository.PostBuyersAsync(buyer);
         }
         public async Task PutBuyerAsync(Guid id, BuyerModel buyer)
         {
-            BuyerRepository buyerRepository = new BuyerRepository();
             await buyerRepository.PutBuyerAsync(id, buyer);
         }
         public async Task DeleteBuyerAsync(Guid id)
         {
-            BuyerRepository buyerRepository = new BuyerRepository();
             await buyerRepository.DeleteBuyerAsync(id);
         }
         public async Task <bool> BuyerIdCheckAsync(Guid id)
         {
-            BuyerRepository buyerRepository = new BuyerRepository();
-            if (await buyerRepository.BuyerIdCheckAsync(id) == true)
+            if (await buyerRepository.BuyerIdCheckAsync(id))
                 return true;
             else
                 return false;

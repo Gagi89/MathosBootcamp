@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Data.SqlClient;
 using TestWebApiModel;
 using TestWebApiRepositoryCommon;
+using TestWebApiCommon;
 
 namespace TestWebApiRepository
 {
@@ -15,9 +16,32 @@ namespace TestWebApiRepository
     {
         static string connectionString = "Data Source=localhost\\SQLEXPRESS;Initial Catalog=WebApplication_DataBase;Integrated Security=True";
 
-        public async Task <List<BuyerModel>> GetBuyerAsync()
+        public async Task <List<BuyerModel>> GetBuyerAsync(Page page, Sort sort, Filter filter)
         {
-            string SqlCommand = "SELECT * FROM Buyer";
+            StringBuilder sql = new StringBuilder();
+
+            sql.Append($"SELECT * FROM Buyer");
+            if (page == null && sort == null && filter == null)
+                sql.Append("");
+            else
+            {
+                if (filter != null)
+                    sql.Append($" WHERE 1=1");
+                if (filter.FilterId != Guid.Empty)
+                    sql.Append($" AND ID = '{filter.FilterId}'");
+                if (filter.FilterName != String.Empty)
+                    sql.Append($" AND BuyerName = '{filter.FilterName}'");
+                if (filter.FilterAdress != String.Empty)
+                    sql.Append($" AND BuyerAdress = '{filter.FilterAdress}'");
+                if (filter.FilterOib != 0)
+                    sql.Append($" AND BuyerOib = '{filter.FilterOib}'");
+                sql.Append($" ORDER BY {sort.SortColumn} {sort.SortOrder}");
+                sql.Append($" OFFSET {page.PageSize} * ({page.PageNumber}-1) ROWS");
+                sql.Append($" FETCH NEXT {page.PageSize} ROWS ONLY");
+            }
+
+            string SqlCommand = sql.ToString();
+            
             SqlConnection connection = new SqlConnection(connectionString);
 
             List<BuyerModel> listofbuyers = new List<BuyerModel>();

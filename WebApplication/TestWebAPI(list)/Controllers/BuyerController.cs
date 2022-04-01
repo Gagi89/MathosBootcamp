@@ -9,19 +9,28 @@ using System.Data.SqlClient;
 using TestWebApiService;
 using TestWebApiModel;
 using System.Threading.Tasks;
+using Autofac.Core;
+using TestWebApiServiceCommon;
+using TestWebApiRepositoryCommon;
+using TestWebApiCommon;
 
 namespace TestWebAPI_list_.Controllers
 
 {
     public class BuyerController : ApiController
     {
+        private IBuyerService serviceRepository;
+        public BuyerController(IBuyerService serviceRepository)
+        {
+            this.serviceRepository = serviceRepository;
+        }
+
         //GET api/buyer
         [HttpGet, Route("api/buyer")]
-        public async Task <HttpResponseMessage> GetBuyerAsync()
+        public async Task <HttpResponseMessage> GetBuyerAsync([FromUri]Page page, [FromUri]Sort sort, [FromUri]Filter filter)
         {
-            BuyerService buyerService = new BuyerService();
             List<BuyerModel> listofbuyers = new List<BuyerModel>();
-            listofbuyers = await buyerService.GetBuyerAsync();
+            listofbuyers = await serviceRepository.GetBuyerAsync(page, sort, filter);
             List<BuyerRest> buyerRests = new List<BuyerRest>();
             foreach (var item in listofbuyers)
             {  
@@ -42,12 +51,11 @@ namespace TestWebAPI_list_.Controllers
         [HttpGet, Route("api/buyer/{id}")]
         public async Task <HttpResponseMessage> GetBuyerByIdAsync(Guid id)
         {
-            BuyerService buyerService = new BuyerService();
 
-            if (await buyerService.BuyerIdCheckAsync(id) == true)
+            if (await serviceRepository.BuyerIdCheckAsync(id))
             {
                 List<BuyerModel> listofbuyers = new List<BuyerModel>();
-                listofbuyers = await buyerService.GetBuyerByIdAsync(id);
+                listofbuyers = await serviceRepository.GetBuyerByIdAsync(id);
                 List<BuyerRest> buyerRests = new List<BuyerRest>();
                 foreach (var item in listofbuyers)
                 {
@@ -67,7 +75,7 @@ namespace TestWebAPI_list_.Controllers
         [HttpPost, Route("api/buyer")]
         public async Task <HttpResponseMessage> PostBuyerAsync(BuyerRest buyer)
         {
-            if (buyer.Name == null || buyer.Adress == null || buyer.Oib == null)
+            if (buyer.Name == null || buyer.Adress == null || buyer.Oib == 0 || buyer.Name == "" || buyer.Adress == "")
                 return Request.CreateResponse(HttpStatusCode.BadRequest, "Not all required data was entered.");
             else
             {
@@ -75,14 +83,13 @@ namespace TestWebAPI_list_.Controllers
                 buyerModel.Name = buyer.Name;
                 buyerModel.Adress = buyer.Adress;
                 buyerModel.Oib = buyer.Oib;
-                BuyerService buyerService = new BuyerService();
-                await buyerService.PostBuyerAsync(buyerModel);
+                await serviceRepository.PostBuyerAsync(buyerModel);
                 return Request.CreateResponse(HttpStatusCode.OK, "New buyer inserted.");
             }
         }
 
         //POST api/buyers
-        [HttpPost, Route("api/buyers")]
+        [HttpPost, Route("api/buyer")]
         public async Task <HttpResponseMessage> PostBuyersAsync(List<BuyerRest> buyer)
         {
             if (buyer == null)
@@ -98,8 +105,7 @@ namespace TestWebAPI_list_.Controllers
                     buyerModel.Oib = item.Oib;
                     listofbuyers.Add(buyerModel);
                 }
-                BuyerService buyerService = new BuyerService();
-                await buyerService.PostBuyersAsync(listofbuyers);
+                await serviceRepository.PostBuyersAsync(listofbuyers);
                 return Request.CreateResponse(HttpStatusCode.OK, "New buyers inserted.");
             }
         }
@@ -108,39 +114,32 @@ namespace TestWebAPI_list_.Controllers
         [HttpPut, Route("api/buyer/{id}")]
         public async Task <HttpResponseMessage> PutBuyerAsync(Guid id, BuyerRest buyer)
         {
-            BuyerService buyerService = new BuyerService();
-            if (await buyerService.BuyerIdCheckAsync(id) == true && buyer != null)
+            if (await serviceRepository.BuyerIdCheckAsync(id) == false)
+                return Request.CreateResponse(HttpStatusCode.NotFound, "Buyer index does not exist.");
+            if (buyer.Name == null || buyer.Adress == null || buyer.Oib == 0 || buyer.Name == "" || buyer.Adress == "")
+                return Request.CreateResponse(HttpStatusCode.BadRequest, "Not all required data was entered.");
+            else
             {
                 BuyerModel buyerModel = new BuyerModel();
                 buyerModel.Name = buyer.Name;
                 buyerModel.Adress = buyer.Adress;
                 buyerModel.Oib = buyer.Oib;
-                await buyerService.PutBuyerAsync(id, buyerModel);
+                await serviceRepository.PutBuyerAsync(id, buyerModel);
                 return Request.CreateResponse(HttpStatusCode.OK, "Buyer has been updated.");
             }
-            else
-                return Request.CreateResponse(HttpStatusCode.NotFound, "Buyer index does not exist.");
         }
 
         //DELETE api/buyer/id
         [HttpDelete, Route("api/buyer/{id}")]
         public async Task <HttpResponseMessage> DeleteBuyerAsync(Guid id)
         {
-            BuyerService buyerService = new BuyerService();
-            if (await buyerService.BuyerIdCheckAsync(id) == true)
+            if (await serviceRepository.BuyerIdCheckAsync(id) == true)
             {
-                await buyerService.DeleteBuyerAsync(id);
+                await serviceRepository.DeleteBuyerAsync(id);
                 return Request.CreateResponse(HttpStatusCode.OK, "Buyer has been deleted.");
             }
             else
                 return Request.CreateResponse(HttpStatusCode.NotFound, "Buyer index does not exist.");
         }
-    }
-
-    public class BuyerRest
-    {
-        public string Name { get; set; }
-        public string Adress { get; set; }
-        public long Oib { get; set; }
     }
 }
