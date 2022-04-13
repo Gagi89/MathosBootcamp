@@ -8,7 +8,6 @@ namespace TestWebApiCommon
 {
     public class Filter
     {
-        public Guid FilterId { get; set; } = Guid.Empty;
         public string FilterName { get; set; } = string.Empty;
         public string FilterAdress { get; set; } = string.Empty;
         public long FilterOib { get; set; } = 0;
