@@ -1,0 +1,22 @@
+.Operator-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+}
+
+.button-login{
+    padding: 5px;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin: 10px;
+}
+
+.button-write{
+    padding: 50px;
+    padding-left: 200px;
+    padding-right: 200px;
+    margin: 10px;
+}
