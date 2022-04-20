@@ -1,9 +1,8 @@
 // import logo from './logo.svg';
 import './App.css';
 import Welcome from './Welcome.js';
-import Operator from './Operator.js';
-
-// let operator = new Operator();
+// import Operator from './Operator.js';
+import FunOperator from './FunOperator.js';
 
 function App() {
   return (
@@ -11,8 +10,8 @@ function App() {
       <header className="App-header">
         <Welcome />
         <img src="https://cdn2.personligalmanacka.se/planner/planner_usp_3.jpg" className="App-logo" alt="logo" />
-        <Operator />
-        {/* operator.FunOperator(); */}
+        {/* <Operator /> */}
+        <FunOperator />
       </header>
     </div>
   );

@@ -1,0 +1,15 @@
+.Button-meal {
+    padding: 5px;
+      padding-left: 50px;
+      padding-right: 50px;
+      margin: 10px;
+      font-size: calc(10px + 2vmin);
+  }
+  
+  th, td {
+    font-size: calc(5px + 2vmin);
+    padding: 10px;
+    text-align: center;
+    border:2px solid white;
+  }
+  
